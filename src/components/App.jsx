@@ -16,7 +16,7 @@ const axios = require('axios');
 
 
 export const App = () => {
-  const [name, setName] = useState('cat');
+  const [name, setName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
@@ -24,7 +24,7 @@ export const App = () => {
   const [largeImageURL, setLargeImageURL] = useState('')
 
  
-console.log(name);
+
  useEffect(() => {
    if (name==='') {
     return
