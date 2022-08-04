@@ -6,9 +6,11 @@ import { Button } from "./Button/Button";
 import { useState,useEffect } from "react";
 
 import { TailSpin } from  'react-loader-spinner'
+import toast, { Toaster } from 'react-hot-toast';
 
 
-  
+
+
 const axios = require('axios');
 
 
@@ -25,6 +27,7 @@ export const App = () => {
 
  
 
+
  useEffect(() => {
    if (name==='') {
     return
@@ -37,13 +40,18 @@ export const App = () => {
     try {
        
        const response = await axios.get(URL);
-       const item = await response.data.hits
+      const item = await response.data.hits
+      if (response.data.hits.length === 0) {
+        const notify = () => toast(`It is not a valid value ${name}`);
+     notify()
+   
+      }
       setData(prevState => [...prevState, ...item])
       setIsLoading(false);
       
      } catch (error) {
 
-    console.error(error);
+    console.error(error)
   }
    }
    
@@ -90,6 +98,20 @@ export const App = () => {
           ariaLabel='three-dots-loading'     
         ></TailSpin> : 'Load More' }</Button>}
         
+
+  <Toaster  toastOptions={{
+    className: '',
+    style: {
+      border: '1px solid #713200',
+      padding: '16px',
+      color: '#efeae6',
+      backgroundColor: '#b20909',
+    },
+       }}
+        containerStyle={{
+    top:80,
+  }}></Toaster>
+
       </div>
 
   );

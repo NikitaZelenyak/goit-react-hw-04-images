@@ -1,5 +1,5 @@
 
-import  { useEffect } from "react"
+import  { useEffect, } from "react"
 
 import { Overlay,ModalBox } from "./Modal.styled"
 
@@ -13,8 +13,8 @@ export const Modal =({onClose,children})=> {
 
         const  handleKeydown = e => {
 
-        if (e.code === 'Escape') {
-            onClose();
+            if (e.code === 'Escape') {
+                onClose()
 
         }
     }
@@ -26,7 +26,7 @@ export const Modal =({onClose,children})=> {
 
         }
         
-    }, [])
+    }, [onClose])
 
 
  const handlerBackdropClose = (e)=> {
